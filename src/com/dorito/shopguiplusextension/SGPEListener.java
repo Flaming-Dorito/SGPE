@@ -39,7 +39,7 @@ public class SGPEListener implements Listener{
 		OfflinePlayer offPlayer = (OfflinePlayer) player;
 //		Inventory inventory =  event.getInventory();
 		String inventoryTitle = event.getView().getTitle();
-		
+		boolean goBack = false;
 		if (inventoryTitle == "Spawner Confirmation" && event.getSlotType() != SlotType.OUTSIDE) {
 			setupEconomy();
 			if (event.getClick().isKeyboardClick() || event.getClick().isShiftClick()) {
@@ -51,6 +51,7 @@ public class SGPEListener implements Listener{
 				int price = Integer.parseInt(clicked.getItemMeta().getLore().get(1).replaceAll("" + ChatColor.COLOR_CHAR, ""));
 				Server server = Bukkit.getServer();
 				if (clickedType == Material.WOOL) {
+					goBack = true;
 					player.sendMessage("Spawner purchase cancelled successfully.");
 				} else if (clickedType == Material.MOB_SPAWNER) {
 					String mob = clicked.getItemMeta().getLore().get(0).replaceAll("" + ChatColor.COLOR_CHAR, "");
@@ -67,6 +68,9 @@ public class SGPEListener implements Listener{
 				
 				event.setCancelled(true);
 				player.closeInventory();
+				if (goBack) {
+					server.dispatchCommand(server.getConsoleSender(), "sudo " + player.getName() + " shop MysticSpawnerss");
+				}
 			} else {
 				event.setCancelled(true);
 			}

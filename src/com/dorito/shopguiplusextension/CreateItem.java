@@ -27,7 +27,7 @@ public class CreateItem {
 		} else {
 			item = new ItemStack(Material.WOOL, 1, (byte) 14);
 			ItemMeta im = item.getItemMeta();
-			im.setDisplayName(ChatColor.DARK_RED + "" + ChatColor.BOLD + "Cancel");
+			im.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD + "Cancel");
 			im.setLore(desc);
 			im.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 			item.setItemMeta(im);
@@ -38,7 +38,7 @@ public class CreateItem {
 	
 	public ItemStack create(String mob, int priceOfOne, int amount) {
 		Material m = Material.MOB_SPAWNER;
-		String name = ChatColor.GOLD + "" + ChatColor.BOLD + mob + " Spawner";		
+		String name = ChatColor.WHITE + "" + ChatColor.BOLD + mob + " Spawner";		
 		ArrayList<String> desc = new ArrayList<String>();
 //		desc.add(mob);
 		desc.add(convertToInvisibleString(mob));
